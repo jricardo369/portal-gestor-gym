@@ -1,9 +1,0 @@
-{
-    "source": "/src/translate/messages.xlf",
-    "outputPath": "/src/translate",
-    "fromLanguage": "es",
-    "toLanguage": [
-        "pt",
-        "en"
-    ]
-}
