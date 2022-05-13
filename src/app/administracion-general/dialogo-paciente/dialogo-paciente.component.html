@@ -1,0 +1,123 @@
+<h2 mat-dialog-title>{{titulo}}</h2>
+
+<mat-dialog-content>
+    <div style="width: 664px;">
+        <h4 style="margin: 0 0 12px 0">Datos personales</h4>
+        <div class="datos" style="display:flex;">
+            <div class="iigwo-input">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="paciente.nombre">
+            </div>
+
+            <div class="iigwo-input">
+                <label>Dirección</label>
+                <input type="text" [(ngModel)]="paciente.direccion">
+            </div>
+
+            <div class="iigwo-input" style="margin-right: 0;">
+                <label>Ciudad</label>
+                <input type="text" [(ngModel)]="paciente.ciudad">
+            </div>
+        </div>
+        <div class="datos" style="display:flex;">
+            <div class="iigwo-input">
+                <label>Edad</label>
+                <input type="number" [(ngModel)]="paciente.edad">
+            </div>
+
+            <div class="iigwo-input">
+                <label>Sexo</label>
+                <select [(ngModel)]="paciente.sexo">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+
+            <div class="iigwo-input">
+                <label>Telefono</label>
+                <input type="tel" [(ngModel)]="paciente.telefono">
+            </div>
+
+            <div class="iigwo-input" style="margin-right: 0;">
+                <label>Ocupación</label>
+                <input type="tel" [(ngModel)]="paciente.ocupacion">
+            </div>
+
+        </div>
+
+        <div class="iigwo-input">
+            <label>Correo electrónico</label>
+            <input type="email" [(ngModel)]="paciente.correoElectronico">
+        </div>
+
+        <div class="iigwo-input" *ngIf="creando">
+            <input type="checkbox" [(ngModel)]="odontograma"
+                style="width: 15px;display: inline-block;line-height: 18px;margin: 0 6px 0 0;">
+            <label style="display: inline-block;line-height: 24px;margin: 0;font-size: 12px;"
+                >Agregar odontograma</label>
+        </div>
+            
+        <div *ngIf="odontograma">
+            <h4 style="margin: 0 0 12px 0">Datos odontograma</h4>
+
+            <div class="iigwo-input descripcion" style="margin-right: 0;">
+                <label>Descripción</label>
+                <textarea [(ngModel)]="historial.descripcion" type="string"></textarea>
+            </div>
+
+            <div class="iigwo-input">
+                <label>Cargar imagen de odontograma</label>
+
+                <!-- <label for='fileId'
+                    [class]='file==null?"fake-button accent":"fake-button"'
+                    tabindex="0">
+                    <span *ngIf="file==null">Seleccionar Archivo</span>
+                    <span *ngIf="file!=null">Archivo Seleccionado</span>                    
+                </label>
+
+                <label style="display: inline-block; line-height: 32px; font-size: 13px; color:rgba(0,0,0,0.5);"
+                    *ngIf="file==null">No hay archivo seleccionado</label>
+                <label style="display: inline-block; line-height: 32px; font-size: 13px;"
+                    *ngIf="file!=null">{{file.name}}</label>
+                <input id='fileId' type="file" #fileInput (change)="onFileSelected(fileInput.files)"
+                    accept="image/*" style='display:none;'> -->
+                
+                <label for='fileId'
+                    [class]='file.length == 0 ?"fake-button accent":"fake-button"'
+                    tabindex="0">
+                    <span *ngIf="file.length == 0">Seleccionar Archivos</span>
+                    <span *ngIf="file.length > 0">Archivos Seleccionados</span>                    
+                </label>
+        
+                <label style="display: inline-block; line-height: 32px; font-size: 13px; color:rgba(0,0,0,0.5);"
+                    *ngIf="file==null">No hay archivos seleccionados</label>
+                <div *ngFor="let f of file" style="display: inline-block;">
+                    <span class="badge-file-icon"><mat-icon svgIcon="attach_file"></mat-icon></span>
+                    <span class="badge-file" style="padding-right: 21px;">{{f.name}}</span>
+                    <span style="margin-left: -18px;">
+                            <button class="iigwo adjuntos-options" (click)="quitarAdjunto(f)">
+                                <mat-icon style="margin-top: 1px;" svgIcon="close"></mat-icon>
+                            </button>
+                    </span>
+                </div>
+        
+                <input id='fileId' type="file" #fileInput (change)="onFileSelected(fileInput.files)"
+                    accept="image/*" style='display:none;' multiple>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button *ngIf="!creando" class="iigwo" (click)='eliminar()'>Eliminar</button>
+    <button class="iigwo" style="margin-left:auto;" (click)='cerrar()'>Cancelar</button>
+    <button *ngIf="creando" class="iigwo accent" style="margin-right:0;" (click)='crear()'>Crear</button>
+    <button *ngIf="!creando" class="iigwo accent" style="margin-right:0;" (click)='editar()'>Guardar cambios</button>
+
+</mat-dialog-actions>
+
+<!-- CARGANDO-->
+<div class='iigwo-loading' *ngIf="cargando">
+    <mat-spinner></mat-spinner>
+</div>

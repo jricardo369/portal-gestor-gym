@@ -1,0 +1,25 @@
+.cita {
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    display: grid;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 1px;
+    cursor: pointer;
+}
+
+.cita p {
+    margin-bottom: 0!important;
+    font-size: 12px;
+}
+
+.cita p.nombre {
+    font-family: regular;
+    font-size: 13px;
+    color: black;
+}
+
+.header-dia {
+    margin: 10px;
+    text-align: center;
+    font-size: 15px;
+}

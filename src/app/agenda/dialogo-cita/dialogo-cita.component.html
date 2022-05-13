@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{titulo}}</h2>
+
+<mat-dialog-content>
+    <div class="iigwo-input" style="margin-right: 0;">
+        <label>Paciente</label>
+        <select [(ngModel)]="cita.paciente">
+            <option *ngFor="let p of pacientes" [ngValue]="p">{{p.nombre}}</option>
+        </select>
+    </div>
+
+    <div class="iigwo-input" style="margin-right: 0;">
+        <label>Fecha</label>
+        <input type="date" [(ngModel)]="cita.fecha">
+    </div>
+
+    <div class="iigwo-input" style="margin-right: 0;">
+        <label>Hora inicio</label>
+        <input type="time" [(ngModel)]="cita.horaInicio">
+    </div>
+
+    <div class="iigwo-input" style="margin-right: 0;">
+        <label>Hora fin</label>
+        <input type="time" [(ngModel)]="cita.horaFin">
+    </div>
+
+    <div class="iigwo-input descripcion" style="margin-right: 0;">
+        <label>Comentario</label>
+        <textarea type="string" [(ngModel)]="cita.comentario" style="min-height: 48px;"></textarea>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button *ngIf="!creando" class="iigwo" (click)='eliminar()'>Eliminar</button>
+    <button class="iigwo" style="margin-left:auto;" (click)='cerrar()'>{{creando ? "Cancelar" : "Cerrar"}}</button>
+    <button *ngIf="creando" class="iigwo accent" style="margin-right:0;" (click)='crear()'>Crear</button>
+    <button *ngIf="!creando" class="iigwo accent" style="margin-right:0;" (click)='editar()'>Guardar cambios</button>
+
+</mat-dialog-actions>
+
+<!-- CARGANDO-->
+<div class='iigwo-loading' *ngIf="cargando">
+    <mat-spinner></mat-spinner>
+</div>
